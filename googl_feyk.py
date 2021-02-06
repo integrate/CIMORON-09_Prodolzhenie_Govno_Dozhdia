@@ -1,2 +1,2 @@
 import pygame
- u=pygame.font(221)
+print("uiuuiuiuiu")
