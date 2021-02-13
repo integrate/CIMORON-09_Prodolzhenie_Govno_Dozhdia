@@ -1,7 +1,9 @@
 import pygame
-def orabotka_sobity:
+from pygame import display
+# def orabotka_sobity():]
+def risovanie():
+    y.fill([255,60,90])
+    display.flip()
 while 1==1:
-    from pygame import display
-    display.set_mode([500,800])
-    if   Key_down:
-        exit()
+    y=display.set_mode([500,800])
+    risovanie()
