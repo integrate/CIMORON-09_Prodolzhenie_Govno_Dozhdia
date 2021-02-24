@@ -2,6 +2,8 @@ import pygame, time
 from pygame import display, event
 
 platforma = pygame.Rect(200, 200, 100, 100)
+karabl = pygame.image.load("risovanie_kartinak_dli_igr/karabl_dle_egr.png")
+karabl = pygame.transform.scale(karabl, [100, 100])
 
 
 # def orabotka_sobity():]
@@ -9,11 +11,9 @@ def risovanie():
     y.fill([0, 0, 0])
     rtyu = [200, 120, 10]
     # pygame.draw.rect(y,rtyu,platforma)
-    platforma = pygame.image.load("kartinki/karabl_dle_egr")
-    platforma = pygame.transform.scale(platforma, [100, 100])
+    y.blit(karabl, platforma)
 
-
-display.flip()  # Показывает окно пользователю
+    display.flip()  # Показывает окно пользователю
 
 
 def obrabotka():
@@ -22,18 +22,25 @@ def obrabotka():
         if did.type == pygame.QUIT:
             exit()
     keys = pygame.key.get_pressed()
+
     if keys[pygame.K_a]:
         platforma.x -= 10
+        slezhu_za_granicami()
 
     if keys[pygame.K_d]:
         platforma.x += 10
+        slezhu_za_granicami()
 
     if keys[pygame.K_w]:
         platforma.y -= 10
+        slezhu_za_granicami()
 
     if keys[pygame.K_s]:
         platforma.y += 10
+        slezhu_za_granicami()
 
+
+def slezhu_za_granicami():
     if platforma.bottom > 825:
         platforma.bottom = 825
 
