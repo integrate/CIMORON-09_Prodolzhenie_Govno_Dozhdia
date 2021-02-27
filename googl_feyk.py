@@ -55,27 +55,12 @@ def obrabotka():
 
 
 def dvizhenie_protivnika():
-    rewq = random.randint(100, 725)
-    qwer = [rewq, 850]
+    global korabl_protivnika
     protivnik.y += 10
-    keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_a]:
-        platforma.x -= 10
-        slezhu_za_granicami()
-
-    if keys[pygame.K_d]:
-        platforma.x += 10
-        slezhu_za_granicami()
-
-    if keys[pygame.K_w]:
-        platforma.y -= 10
-        slezhu_za_granicami()
-
-    if keys[pygame.K_s]:
-        platforma.y += 10
-        slezhu_za_granicami()
-
+    if protivnik.y > 725:
+        korabl_protivnika = help.izmeni_kartinku(korabl_protivnika, 100, 100, [255, 255, 255], 150)
+        protivnik.y = 100
 
 def slezhu_za_granicami():
     if platforma.bottom > 825:
@@ -94,9 +79,7 @@ def slezhu_za_granicami():
 
 while 1 == 1:
     time.sleep(1 / 60)
-    if protivnik.y>725:
-        korabl_protivnika = help.izmeni_kartinku(korabl_protivnika, 100, 100, [255, 255, 255], 150)
-        protivnik.y=100
+
     obrabotka()
     dvizhenie_protivnika()
     risovanie()
