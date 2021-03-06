@@ -27,7 +27,8 @@ def risovanie():
     # pygame.draw.rect(y,rtyu,protivnik)
 
     y.blit(karabl, platforma)
-    y.blit(korabl_protivnika, protivnik)
+    y.blit(korabl_protivnika,red[0])
+    y.blit(korabl_protivnika, red[1])
 
     display.flip()  # Показывает окно пользователю
 
@@ -57,12 +58,15 @@ def obrabotka():
 
 def dvizhenie_protivnika():
     global korabl_protivnika
-    protivnik.y += 10
+    red[0].y += 10
+    red[1].y += 10
 
     if protivnik.y > 725:
         korabl_protivnika = help.izmeni_kartinku(korabl_protivnika, 100, 100, [255, 255, 255], 150)
-        protivnik.x=random.randint(0,650)
-        protivnik.y = 0
+        red[0].x=random.randint(0,650)
+        red[0].y = 0
+        red[1].x=random.randint(0,650)
+        red[1].y = 0
 
 
 def slezhu_za_granicami():
