@@ -9,7 +9,8 @@ y = display.set_mode([750, 825])
 platforma = pygame.Rect(200, 200, 100, 100)
 protivnik = pygame.Rect(100, 100, 100, 100)
 protivnik_2 = pygame.Rect(14, 140, 100, 100)
-
+patron_platforma=pygame.Rect(100,10,20, 20)
+patron_spedy=10
 karabl = pygame.image.load("risovanie_kartinak_dli_igr/karabl_dle_egr.png")
 karabl = pygame.transform.scale(karabl, [100, 100])
 red=[protivnik,protivnik_2]
@@ -18,6 +19,9 @@ korabl_protivnika = pygame.image.load("risovanie_kartinak_dli_igr/korabl_protivn
 korabl_protivnika = pygame.transform.flip(korabl_protivnika, False, True)
 
 korabl_protivnika = help.izmeni_kartinku(korabl_protivnika, 100, 100, [255, 255, 255], 130)
+
+patron = pygame.image.load("risovanie_kartinak_dli_igr/patron_platforme.jpg")
+patron = help.izmeni_kartinku(patron,9,50, [255, 255, 255], 15)
 
 
 # def orabotka_sobity():]
@@ -29,15 +33,22 @@ def risovanie():
     y.blit(karabl, platforma)
     y.blit(korabl_protivnika,red[0])
     y.blit(korabl_protivnika, red[1])
+    y.blit(patron,patron_platforma)
 
     display.flip()  # Показывает окно пользователю
-
+def upravlaem_patronom ():
+    global patron_spedy
+    patron_spedy=-10
 
 def obrabotka():
     lodka = pygame.event.get()
+    global patron_platforma
     for did in lodka:
         if did.type == pygame.QUIT:
             exit()
+        if did.type==pygame.MOUSEBUTTONDOWN:
+            patron_platforma.y+=-10
+
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_a]:
@@ -85,7 +96,7 @@ def slezhu_za_granicami():
 
 while 1 == 1:
     time.sleep(1 / 60)
-
+    upravlaem_patronom()
     obrabotka()
     dvizhenie_protivnika()
     risovanie()
