@@ -5,13 +5,12 @@ import help
 from pygame import display, event
 
 y = display.set_mode([750, 825])
-
 platforma = pygame.Rect(200, 200, 100, 100)
 protivnik = pygame.Rect(100, 100, 100, 100)
 protivnik_2 = pygame.Rect(14, 140, 100, 100)
-patron_platforma = pygame.Rect(300,200, 20, 20)
+patroni = []
 patron_spedy = 10
-big_baby_type=False
+big_baby_type = False
 karabl = pygame.image.load("risovanie_kartinak_dli_igr/karabl_dle_egr.png")
 karabl = pygame.transform.scale(karabl, [100, 100])
 red = [protivnik, protivnik_2]
@@ -27,44 +26,48 @@ patron = help.izmeni_kartinku(patron, 9, 50, [255, 255, 255], 15)
 
 # def orabotka_sobity():]
 def risovanie():
-
     y.fill([0, 0, 0])
     rtyu = [200, 120, 10]  # pygame.draw.rect(y,rtyu,platforma)
-    # pygame.draw.rect(y,rtyu,protivnik)
 
     y.blit(karabl, platforma)
     y.blit(korabl_protivnika, red[0])
     y.blit(korabl_protivnika, red[1])
-    if big_baby_type ==True:
-        y.blit(patron, patron_platforma)
+    for did in patroni:
+        y.blit(patron, did)
+
+    # pygame.draw.rect(y,rtyu,platforma,1)
+    # pygame.draw.rect(y,rtyu,patron_platforma,1)
 
     display.flip()  # Показывает окно пользователю
-
-
 
 
 def upravlaem_patronom():
     global patron_spedy
     if big_baby_type == True:
-        patron_platforma.y-= 10
+        patron_platforma_1.y -= 10
 
 
 def obrabotka():
     lodka = pygame.event.get()
     global big_baby_type
     global y
-    global patron_platforma
+    global patron_platforma_1
     for did in lodka:
         if did.type == pygame.QUIT:
             exit()
-        if did.type==pygame.MOUSEBUTTONDOWN:
-            big_baby_type = True
-            patron_platforma.y = platforma.y
-            patron_platforma.x = platforma.x
+        if did.type == pygame.MOUSEBUTTONDOWN:
 
+            if did.button == 1:
+                a = pygame.Rect(300, 200, 9, 50)
+                patroni.append(a)
 
+            if did.button == 3:
+                b = pygame.Rect(300, 200, 9, 50)
+                patroni.append(b)
 
     keys = pygame.key.get_pressed()
+
+
 
     if keys[pygame.K_a]:
         platforma.x -= 6
