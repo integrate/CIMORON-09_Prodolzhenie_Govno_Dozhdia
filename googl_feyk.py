@@ -42,9 +42,8 @@ def risovanie():
 
 
 def upravlaem_patronom():
-    global patron_spedy
-    if big_baby_type == True:
-        patron_platforma_1.y -= 10
+    for did in patroni:
+        did.y -= 6
 
 
 def obrabotka():
@@ -60,14 +59,16 @@ def obrabotka():
             if did.button == 1:
                 a = pygame.Rect(300, 200, 9, 50)
                 patroni.append(a)
+                a.x = platforma.x
+                a.y = platforma.y
 
             if did.button == 3:
                 b = pygame.Rect(300, 200, 9, 50)
                 patroni.append(b)
+                b.right = platforma.right
+                b.y = platforma.y
 
     keys = pygame.key.get_pressed()
-
-
 
     if keys[pygame.K_a]:
         platforma.x -= 6
@@ -91,12 +92,18 @@ def dvizhenie_protivnika():
     red[0].y += 10
     red[1].y += 10
 
-    if protivnik.y > 725:
+    if protivnik.y > 825:
         korabl_protivnika = help.izmeni_kartinku(korabl_protivnika, 100, 100, [255, 255, 255], 150)
         red[0].x = random.randint(0, 650)
         red[0].y = 0
         red[1].x = random.randint(0, 650)
         red[1].y = 0
+    # for did in patroni:
+    #     kl = protivnik.collidelistall(patroni)
+    #     if kl == 0 and 1:
+    #         patroni[0].y = 2000
+    #         patroni[1].y = 2000
+    #         del patroni [0]
 
 
 def slezhu_za_granicami():
