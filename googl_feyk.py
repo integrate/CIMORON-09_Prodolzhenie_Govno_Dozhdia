@@ -98,12 +98,15 @@ def dvizhenie_protivnika():
         red[0].y = 0
         red[1].x = random.randint(0, 650)
         red[1].y = 0
-    # for did in patroni:
-    #     kl = protivnik.collidelistall(patroni)
-    #     if kl == 0 and 1:
-    #         patroni[0].y = 2000
-    #         patroni[1].y = 2000
-    #         del patroni [0]
+
+
+    for did in patroni:
+        kl = protivnik.collidelistall(patroni)
+
+        if kl == 1:
+            patroni[0].y = 2000
+            patroni[1].y = 2000
+            del patroni [0]
 
 
 def slezhu_za_granicami():
