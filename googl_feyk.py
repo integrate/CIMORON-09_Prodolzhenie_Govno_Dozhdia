@@ -15,6 +15,8 @@ karabl = pygame.image.load("risovanie_kartinak_dli_igr/karabl_dle_egr.png")
 karabl = pygame.transform.scale(karabl, [100, 100])
 red = [protivnik, protivnik_2]
 
+kartnka_nebo = pygame.image.load("risovanie_kartinak_dli_igr/nebo.jpg")
+kartnka_nebo=pygame.transform.scale(kartnka_nebo,[750,825])
 korabl_protivnika = pygame.image.load("risovanie_kartinak_dli_igr/korabl_protivnika.png")
 korabl_protivnika = pygame.transform.flip(korabl_protivnika, False, True)
 
@@ -26,9 +28,8 @@ patron = help.izmeni_kartinku(patron, 9, 50, [255, 255, 255], 15)
 
 # def orabotka_sobity():]
 def risovanie():
-    y.fill([0, 0, 0])
     rtyu = [200, 120, 10]  # pygame.draw.rect(y,rtyu,platforma)
-
+    y.blit(kartnka_nebo,[0,0])
     y.blit(karabl, platforma)
     y.blit(korabl_protivnika, red[0])
     y.blit(korabl_protivnika, red[1])
@@ -93,20 +94,29 @@ def dvizhenie_protivnika():
     red[1].y += 10
 
     if protivnik.y > 825:
-        korabl_protivnika = help.izmeni_kartinku(korabl_protivnika, 100, 100, [255, 255, 255], 150)
         red[0].x = random.randint(0, 650)
-        red[0].y = 0
+        red[0].y = -150
+    if protivnik_2.y > 825:
         red[1].x = random.randint(0, 650)
-        red[1].y = 0
-
+        red[1].y = -150
+    # Чтобы корабли не встречались
+    lt = protivnik.colliderect(protivnik_2)
+    if lt == 1:
+        protivnik.left = protivnik_2.right
 
     for did in patroni:
-        kl = protivnik.collidelistall(patroni)
+
+        kl = protivnik.colliderect(did)
 
         if kl == 1:
-            patroni[0].y = 2000
-            patroni[1].y = 2000
-            del patroni [0]
+            patroni.remove(did)
+            protivnik.y = 3000
+
+        kf = protivnik_2.colliderect(did)
+
+        if kf == 1:
+            patroni.remove(did)
+            protivnik_2.y = 3000
 
 
 def slezhu_za_granicami():
