@@ -14,6 +14,10 @@ big_baby_type = False
 karabl = pygame.image.load("risovanie_kartinak_dli_igr/karabl_dle_egr.png")
 karabl = pygame.transform.scale(karabl, [100, 100])
 red = [protivnik, protivnik_2]
+shrift=pygame.font.SysFont("arial",50)
+hp=5
+hp=str(hp)
+hp_platforme=shrift.render(hp,True,[255,2,10])
 
 kartnka_nebo = pygame.image.load("risovanie_kartinak_dli_igr/nebo.jpg")
 kartnka_nebo=pygame.transform.scale(kartnka_nebo,[750,825])
@@ -28,14 +32,13 @@ patron = help.izmeni_kartinku(patron, 9, 50, [255, 255, 255], 15)
 
 # def orabotka_sobity():]
 def risovanie():
-    rtyu = [200, 120, 10]  # pygame.draw.rect(y,rtyu,platforma)
     y.blit(kartnka_nebo,[0,0])
     y.blit(karabl, platforma)
     y.blit(korabl_protivnika, red[0])
     y.blit(korabl_protivnika, red[1])
     for did in patroni:
         y.blit(patron, did)
-
+    y.blit(hp_platforme,[100,0])
     # pygame.draw.rect(y,rtyu,platforma,1)
     # pygame.draw.rect(y,rtyu,patron_platforma,1)
 
@@ -88,6 +91,13 @@ def obrabotka():
         slezhu_za_granicami()
 
 
+def stolknovenie_protivnikov_and_platforme():
+    global hp_platforme
+    io=protivnik.colliderect(platforma)
+    o=protivnik_2.colliderect(platforma)
+    if o==1 or io==1:
+        # hp_platforme=shrift.render("2",True,[255,2,10])
+
 def dvizhenie_protivnika():
     global korabl_protivnika
     red[0].y += 10
@@ -138,4 +148,5 @@ while 1 == 1:
     upravlaem_patronom()
     obrabotka()
     dvizhenie_protivnika()
+    stolknovenie_protivnikov_and_platforme()
     risovanie()
