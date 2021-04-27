@@ -7,6 +7,7 @@ from pygame import display, event
 y = display.set_mode([750, 825])
 platforma = pygame.Rect(200, 200, 100, 100)
 protivnik = pygame.Rect(100, 100, 100, 100)
+zhizn=pygame.Rect(0,0, 100, 100)
 protivnik_2 = pygame.Rect(14, 140, 100, 100)
 patroni = []
 patron_spedy = 10
@@ -14,13 +15,15 @@ big_baby_type = False
 karabl = pygame.image.load("risovanie_kartinak_dli_igr/karabl_dle_egr.png")
 karabl = pygame.transform.scale(karabl, [100, 100])
 red = [protivnik, protivnik_2]
-shrift=pygame.font.SysFont("arial",50)
-hp=5
-hp=str(hp)
-hp_platforme=shrift.render(hp,True,[255,2,10])
+shrift = pygame.font.SysFont("arial", 50)
+hp = 5
+hp_platforme = shrift.render(str(hp), True, [255, 2, 10])
+
+serdze=pygame.image.load("risovanie_kartinak_dli_igr/serdze.jpg")
+serdze= help.izmeni_kartinku(serdze, 100, 100, [255, 255, 255],10)
 
 kartnka_nebo = pygame.image.load("risovanie_kartinak_dli_igr/nebo.jpg")
-kartnka_nebo=pygame.transform.scale(kartnka_nebo,[750,825])
+kartnka_nebo = pygame.transform.scale(kartnka_nebo, [750, 825])
 korabl_protivnika = pygame.image.load("risovanie_kartinak_dli_igr/korabl_protivnika.png")
 korabl_protivnika = pygame.transform.flip(korabl_protivnika, False, True)
 
@@ -32,13 +35,15 @@ patron = help.izmeni_kartinku(patron, 9, 50, [255, 255, 255], 15)
 
 # def orabotka_sobity():]
 def risovanie():
-    y.blit(kartnka_nebo,[0,0])
+    y.blit(kartnka_nebo, [0, 0])
     y.blit(karabl, platforma)
+    y.blit(serdze,zhizn)
+
     y.blit(korabl_protivnika, red[0])
     y.blit(korabl_protivnika, red[1])
     for did in patroni:
         y.blit(patron, did)
-    y.blit(hp_platforme,[100,0])
+    y.blit(hp_platforme, [100, 0])
     # pygame.draw.rect(y,rtyu,platforma,1)
     # pygame.draw.rect(y,rtyu,patron_platforma,1)
 
@@ -92,11 +97,20 @@ def obrabotka():
 
 
 def stolknovenie_protivnikov_and_platforme():
-    global hp_platforme
-    io=protivnik.colliderect(platforma)
-    o=protivnik_2.colliderect(platforma)
-    if o==1 or io==1:
+    global hp_platforme, hp
+    io = protivnik.colliderect(platforma)
+    o = protivnik_2.colliderect(platforma)
+    if io == 1:
+        protivnik.y = 900
+    if o == 1:
+        protivnik_2.y = 900
+
+    if o == 1 or io == 1:
+        hp -= 1
+
+        hp_platforme = shrift.render(str(hp), True, [255, 2, 10])
         # hp_platforme=shrift.render("2",True,[255,2,10])
+
 
 def dvizhenie_protivnika():
     global korabl_protivnika
