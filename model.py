@@ -74,7 +74,6 @@ def stolknovenie_protivnikov_and_platforme():
 
     if o == 1 or io == 1:
         hp -= 1
-        # hp_platforme = shrift.render(str(hp), True, [255, 2, 10])
 
 def upravlaem_patronom():
     for did in patroni:
