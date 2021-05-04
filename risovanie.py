@@ -20,6 +20,11 @@ korabl_protivnika = help.izmeni_kartinku(korabl_protivnika, 100, 100, [255, 255,
 karabl = pygame.image.load("risovanie_kartinak_dli_igr/karabl_dle_egr.png")
 karabl = pygame.transform.scale(karabl, [100, 100])
 
+coin = pygame.image.load("risovanie_kartinak_dli_igr/coin.jpg")
+coin = help.izmeni_kartinku(coin, 100, 100, [255, 255, 255], 10)
+
+
+
 shrift = pygame.font.SysFont("arial", 50)
 hp_platforme = shrift.render(str(model.hp), True, [255, 2, 10])
 konez = "YOU DEAD"
@@ -29,6 +34,7 @@ def risovanie():
     y.blit(kartnka_nebo, [0, 0])
     y.blit(karabl, model.platforma)
     y.blit(serdze, model.zhizn)
+    y.blit(coin,[625,0])
     hp_platforme=shrift.render(str(model.hp), True, [255, 2, 10])
 
     y.blit(korabl_protivnika, model.red[0])
