@@ -2,12 +2,6 @@ import pygame, time, random, model
 
 
 
-
-
-
-
-
-
 def obrabotka():
     lodka = pygame.event.get()
     global big_baby_type
@@ -19,17 +13,9 @@ def obrabotka():
         if did.type == pygame.MOUSEBUTTONDOWN:
 
             if did.button == 1:
-                a = pygame.Rect(300, 200, 9, 50)
-                model.patroni.append(a)
-                a.x = model.platforma.x
-                a.y = model.platforma.y
-
+                model.sozdat_leviy_patron()
             if did.button == 3:
-                b = pygame.Rect(300, 200, 9, 50)
-                model.patroni.append(b)
-                b.right = model.platforma.right
-                b.y = model.platforma.y
-
+                model.sozdat_pravuy_patron()
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_a]:
