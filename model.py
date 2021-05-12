@@ -5,7 +5,6 @@ y = display.set_mode([750, 825])
 
 platforma = pygame.Rect(200, 200, 100, 100)
 protivnik = pygame.Rect(100, 100, 100, 100)
-zhizn = pygame.Rect(0, 0, 100, 100)
 protivnik_2 = pygame.Rect(14, 140, 100, 100)
 red = [protivnik, protivnik_2]
 patroni = []
@@ -41,6 +40,10 @@ def sozdat_pravuy_patron():
         patroni.append(b)
         b.right = platforma.right
         b.y = platforma.y
+
+
+
+
 
 
 def dvizhenie_protivnika():
