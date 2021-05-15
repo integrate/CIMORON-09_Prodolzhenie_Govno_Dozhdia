@@ -46,13 +46,13 @@ def risovanie():
 
     y.blit(coin, [650, 0])
 
-    if model.monety>25:
+    if model.monety>33:
         y.blit(br_kubok,[700,775])
 
-    if model.monety>50:
+    if model.monety>66:
         y.blit(sr_kubok, [650, 775])
 
-    if model.monety>75:
+    if model.monety>100:
         y.blit(zl_kubok, [600, 775])
 
     hp_platforme = shrift.render(str(model.hp), True, [255, 2, 10])
@@ -66,6 +66,8 @@ def risovanie():
 
     for did in model.patroni:
         y.blit(patron, did)
+
+
 
     if model.hp < 1:
         y.blit(konez_zezni, [350,400])

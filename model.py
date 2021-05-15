@@ -34,6 +34,13 @@ def sozdat_leviy_patron():
         patroni.append(a)
         a.x = platforma.x
         a.y = platforma.y
+        if monety>105:
+            a2 = pygame.Rect(330, 200, 9, 50)
+            patroni.append(a2)
+            a2.x = platforma.x-10
+            a2.y = platforma.y
+
+            a.x = platforma.x+10
 
 def sozdat_pravuy_patron():
         b = pygame.Rect(300, 200, 9, 50)
@@ -41,9 +48,13 @@ def sozdat_pravuy_patron():
         b.right = platforma.right
         b.y = platforma.y
 
+        if monety>105:
+            b2 = pygame.Rect(170, 200, 9, 50)
+            patroni.append(b2)
+            b2.right = platforma.right+10
+            b2.y = platforma.y
 
-
-
+            b.right = platforma.right - 10
 
 
 def dvizhenie_protivnika():
