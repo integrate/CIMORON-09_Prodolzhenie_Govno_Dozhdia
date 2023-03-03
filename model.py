@@ -1,8 +1,6 @@
 import pygame, random, time
 from pygame import display, event
 
-y = display.set_mode([750, 825])
-
 platforma = pygame.Rect(200, 200, 100, 100)
 protivnik = pygame.Rect(100, 100, 100, 100)
 protivnik_2 = pygame.Rect(14, 140, 100, 100)
@@ -14,8 +12,8 @@ hp = 5
 max_patroni=3
 
 def slezhu_za_granicami():
-    if platforma.bottom > 825:
-        platforma.bottom = 825
+    if platforma.bottom > 725:
+        platforma.bottom = 725
 
     if platforma.y < 0:
         platforma.y = 0

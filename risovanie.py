@@ -1,7 +1,8 @@
-import pygame, random, time, model, help
+import pygame, random, time, model, help, os
 from pygame import display, event
 
-y = display.set_mode([750, 825])
+
+y = pygame.display.set_mode([750, 725])
 
 patron = pygame.image.load("risovanie_kartinak_dli_igr/patron_platforme.jpg")
 patron = help.izmeni_kartinku(patron, 9, 50, [255, 255, 255], 15)
@@ -47,13 +48,13 @@ def risovanie():
     y.blit(coin, [650, 0])
 
     if model.monety>33:
-        y.blit(br_kubok,[700,775])
+        y.blit(br_kubok,[700,675])
 
     if model.monety>66:
-        y.blit(sr_kubok, [650, 775])
+        y.blit(sr_kubok, [650, 675])
 
     if model.monety>100:
-        y.blit(zl_kubok, [600, 775])
+        y.blit(zl_kubok, [600, 675])
 
     hp_platforme = shrift.render(str(model.hp), True, [255, 2, 10])
     y.blit(hp_platforme, [100, 0])
